@@ -1,10 +1,9 @@
 const mysql = require("mysql");
 const pool = require("../sql");
 
-// list bills
 const list = (req, res) => {
   let sql = `SELECT * FROM ??`;
-  sql = mysql.format(sql, ["bills"]);
+  sql = mysql.format(sql, ["banks"]);
   pool.query(sql, (err, rows) => {
     if (err) {
       console.error(err);
@@ -15,12 +14,11 @@ const list = (req, res) => {
   });
 };
 
-// get bill by id
 const show = (req, res) => {
   const { id } = req.params;
 
   let sql = `SELECT * FROM ?? WHERE ?? = ?`;
-  let replacements = ["bills", "id", id];
+  let replacements = ["banks", "id", id];
   sql = mysql.format(sql, replacements);
 
   pool.query(sql, (err, row) => {
@@ -32,13 +30,13 @@ const show = (req, res) => {
   });
 };
 
-// create new bill
 const create = (req, res) => {
   // NEED TO FIGURE OUT HOW TO INSERT USER_ID (FK)
-  const { name, due_day, amount, fixed_amount } = req.body;
+  // const { id } = req.params;
+  const { name, address, user_id } = req.body;
 
-  let sql = `INSERT INTO ?? VALUES (?, ?, ?, ?, ?)`;
-  let replacements = ["bills", null, name, due_day, amount, fixed_amount];
+  let sql = `INSERT INTO ?? VALUES (?, ?, ?, ?)`;
+  let replacements = ["banks", null, name, address, user_id];
   sql = mysql.format(sql, replacements);
 
   pool.query(sql, (err, row) => {
@@ -50,13 +48,12 @@ const create = (req, res) => {
   });
 };
 
-// update bill by id
 const update = (req, res) => {
   const { id } = req.params;
   const { body } = req;
 
   let sql = `UPDATE ?? SET ? WHERE id = ?`;
-  sql = mysql.format(sql, ["bills", body, id]);
+  sql = mysql.format(sql, ["banks", body, id]);
 
   pool.query(sql, (err, row) => {
     if (err) {
@@ -67,12 +64,11 @@ const update = (req, res) => {
   });
 };
 
-// delete bill by id
 const remove = (req, res) => {
   const { id } = req.params;
 
   let sql = `DELETE FROM ?? WHERE ?? = ?`;
-  sql = mysql.format(sql, ["bills", "id", id]);
+  sql = mysql.format(sql, ["banks", "id", id]);
 
   pool.query(sql, (err, row) => {
     if (err) {
