@@ -1,21 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const { checkJwt } = require("../middleware");
+// const { checkJwt } = require("../middleware");
 const { list, show, create, update, remove } = require("../controllers/bills");
 
 // List all items
-router.get("/bills", checkJwt, list);
+router.get("/bills", list);
 
 // Show single item
-router.get("/bills/:id", checkJwt, show);
+router.get("/bills/:id", show);
 
 // Create new item
-router.post("/bills/", checkJwt, create);
+router.post("/bills/", create);
 
 // Update
-router.put("/bills/:id", checkJwt, update);
+router.put("/bills/:id", update);
 
 // Delete
-router.delete("/bills/:id", checkJwt, remove);
+router.delete("/bills/:id", remove);
 
 module.exports = router;
