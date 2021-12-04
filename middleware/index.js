@@ -6,14 +6,11 @@ const checkJwt = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const [bearer, token] = authHeader.split(" ");
 
-  const decoded = jwt.verify(token, "secret");
-
-  if (!decoded) {
-      throw new Error("Invalid token");
-    }
+  try {
+    const decoded = jwt.verify(token, "secret");
     req.user = decoded;
     next();
-   if (error) {
+  } catch(error) {
     res.sendStatus(401);
   }
 };
