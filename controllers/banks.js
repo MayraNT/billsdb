@@ -32,7 +32,6 @@ const show = (req, res) => {
 
 const create = (req, res) => {
   // NEED TO FIGURE OUT HOW TO INSERT USER_ID (FK)
-  // const { id } = req.params;
   const { name, address, user_id } = req.body;
 
   let sql = `INSERT INTO ?? VALUES (?, ?, ?, ?)`;

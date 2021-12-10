@@ -34,11 +34,10 @@ const show = (req, res) => {
 
 // create new bill
 const create = (req, res) => {
-  // NEED TO FIGURE OUT HOW TO INSERT USER_ID (FK)
   const { name, due_day, amount, fixed_amount } = req.body;
 
-  let sql = `INSERT INTO ?? VALUES (?, ?, ?, ?, ?)`;
-  let replacements = ["bills", null, name, due_day, amount, fixed_amount];
+  let sql = `INSERT INTO ?? VALUES (?, ?, ?, ?, ?, ?)`;
+  let replacements = ["bills", null, name, due_day, amount, fixed_amount, null];
   sql = mysql.format(sql, replacements);
 
   pool.query(sql, (err, row) => {

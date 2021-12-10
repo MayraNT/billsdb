@@ -4,13 +4,13 @@ const { checkJwt } = require("../middleware");
 const { list, show, create, update, remove } = require("../controllers/bills");
 
 // List all items
-router.get("/bills", checkJwt, list);
+router.get("/bills", list);
 
 // Show single item
 router.get("/bills/:id", show);
 
 // Create new item
-router.post("/bills/", create);
+router.post("/bills", create);
 
 // Update
 router.put("/bills/:id", update);
