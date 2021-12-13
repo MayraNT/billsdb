@@ -33,22 +33,6 @@ const show = (req, res) => {
 };
 
 // create new bill
-// const create = (req, res) => {
-//   const { name, due_day, amount, fixed_amount } = req.body;
-
-//   let sql = `INSERT INTO ?? VALUES (?, ?, ?, ?, ?, ?)`;
-//   let replacements = ["bills", null, name, due_day, amount, fixed_amount, null];
-//   sql = mysql.format(sql, replacements);
-
-//   pool.query(sql, (err, row) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).send("Oh no! Something went wrong.");
-//     }
-//     res.json(row);
-//   });
-// };
-
 const create = (req, res) => {
   let newBill = {
     name: req.body.name,

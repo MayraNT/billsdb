@@ -5,10 +5,10 @@ const { list, show, update, remove } = require("../controllers/users");
 
 router.get("/users", checkJwt, list);
 
-router.get("/users/:id", show);
+router.get("/users/:id", checkJwt, show);
 
-router.put("/users/:id", update);
+router.put("/users/:id", checkJwt, update);
 
-router.delete("/users/:id", remove);
+router.delete("/users/:id", checkJwt, remove);
 
 module.exports = router;

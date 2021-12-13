@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-// const { checkJwt } = require("../middleware");
+const { checkJwt } = require("../middleware");
 const { list, show, create, update, remove } = require("../controllers/banks");
 
-router.get("/banks", list);
+router.get("/banks", checkJwt, list);
 
-router.get("/banks/:id", show);
+router.get("/banks/:id", checkJwt, show);
 
-router.post("/banks/", create);
+router.post("/banks/", checkJwt, create);
 
-router.put("/banks/:id", update);
+router.put("/banks/:id", checkJwt, update);
 
-router.delete("/banks/:id", remove);
+router.delete("/banks/:id", checkJwt, remove);
 
 module.exports = router;
